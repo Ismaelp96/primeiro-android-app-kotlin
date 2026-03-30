@@ -1,7 +1,10 @@
 package com.dev.ismaelpatrick.meuprimeiroappandroid
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +18,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        Toast.makeText(this, "Teste", Toast.LENGTH_SHORT).show()
+
+        val url = "https://rocketseat.com.br"
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        this.startActivity(intent)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root

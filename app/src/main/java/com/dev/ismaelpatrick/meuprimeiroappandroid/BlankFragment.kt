@@ -5,15 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.dev.ismaelpatrick.meuprimeiroappandroid.databinding.FragmentBlankBinding
 
 
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "name"
-private const val ARG_PARAM2 = "age"
-private const val ARG_PARAM3 = "isMale"
+private const val ARG_NAME = "name"
+private const val ARG_AGE = "age"
+private const val ARG_IS_MALE = "isMale"
 
 /**
  * A simple [Fragment] subclass.
@@ -37,10 +38,28 @@ class BlankFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        requireActivity().getString(R.string.hello_blank_fragment)
+        requireContext().getString(R.string.hello_blank_fragment)
+        context?.getString(R.string.hello_blank_fragment)
+        getString(R.string.hello_blank_fragment)
+
+        requireActivity().applicationContext
+        context?.let {
+            Toast.makeText(
+                it,
+                getString(R.string.hello_blank_fragment),
+                Toast.LENGTH_SHORT)
+                .show()
+
+        }
+
+
+
         arguments?.let {
-            name = it.getString(ARG_PARAM1)
-            age = it.getInt(ARG_PARAM2)
-            isMale = it.getBoolean(ARG_PARAM3)
+            name = it.getString(ARG_NAME)
+            age = it.getInt(ARG_AGE)
+            isMale = it.getBoolean(ARG_IS_MALE)
         }
     }
 
@@ -79,9 +98,9 @@ class BlankFragment : Fragment() {
         fun newInstance(name: String, age: Int, isMale: Boolean) =
             BlankFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, name)
-                    putInt(ARG_PARAM2, age)
-                    putBoolean(ARG_PARAM3, isMale)
+                    putString(ARG_NAME, name)
+                    putInt(ARG_AGE, age)
+                    putBoolean(ARG_IS_MALE, isMale)
                 }
             }
     }
