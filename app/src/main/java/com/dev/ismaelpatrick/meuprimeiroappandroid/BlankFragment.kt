@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import com.dev.ismaelpatrick.meuprimeiroappandroid.databinding.FragmentBlankBinding
+
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,10 +21,19 @@ private const val ARG_PARAM3 = "isMale"
  * create an instance of this fragment.
  */
 class BlankFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+    private var _binding: FragmentBlankBinding? = null
+
+    // This property is only valid between onCreateView and onDestroyView
+    private val binding get() = _binding!!
+
     private var name: String? = null
     private var age: Int? = null
     private var isMale: Boolean? = null
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,22 +45,24 @@ class BlankFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank, container, false)
+    ): View {
+        _binding = FragmentBlankBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.tvFragmentContent.text = getString(
+            R.string.name_age_is_male,
+            name,
+            age.toString(),
+            if(isMale == true) "Masculino" else "Feminino"
+        ).trimIndent()
 
-        val tvFragmentContent = view.findViewById<TextView>(R.id.tvFragmentContent)
-        tvFragmentContent.text = """
-           Nome: $name
-           Idade: $age 
-           Sexo: ${if (isMale === true) "Masculino" else "Feminino"} 
-        """.trimIndent()
     }
 
     companion object {
@@ -62,7 +75,6 @@ class BlankFragment : Fragment() {
          * @param isMale Parameter 3.
          * @return A new instance of fragment BlankFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(name: String, age: Int, isMale: Boolean) =
             BlankFragment().apply {
