@@ -32,5 +32,11 @@ class MainActivity : AppCompatActivity() {
             this?.textAlignment = TextView.TEXT_ALIGNMENT_CENTER
         }
 
+        supportFragmentManager.beginTransaction().add(R.id.flMainContainer, BlankFragment.newInstance(
+            name = "Ismael Patrick",
+            age = 29,
+            isMale = true
+        )).commit()
+
     }
 }
