@@ -1,5 +1,6 @@
 package com.dev.ismaelpatrick.meuprimeiroappandroid
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -19,12 +20,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        Toast.makeText(this, "Teste", Toast.LENGTH_SHORT).show()
+        val myClass = MyClass(context = applicationContext)
 
-        val url = "https://rocketseat.com.br"
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        this.startActivity(intent)
-
+        showToast(context = this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -47,5 +45,9 @@ class MainActivity : AppCompatActivity() {
             isMale = true
         )).commit()
 
+    }
+
+    fun showToast(context: Context) {
+        Toast.makeText(context, "hello world!", Toast.LENGTH_SHORT).show()
     }
 }

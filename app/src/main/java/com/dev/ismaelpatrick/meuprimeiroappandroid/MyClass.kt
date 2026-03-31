@@ -1,0 +1,13 @@
+package com.dev.ismaelpatrick.meuprimeiroappandroid
+
+import android.content.Context
+import java.lang.ref.WeakReference
+
+class MyClass(val context: Context) {
+    val contextWeakReference = WeakReference(context)
+
+    fun doSomething() {
+        contextWeakReference.get()
+        // use the context here
+    }
+}
