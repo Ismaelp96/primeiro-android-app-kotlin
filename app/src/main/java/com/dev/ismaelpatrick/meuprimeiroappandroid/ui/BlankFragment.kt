@@ -1,4 +1,4 @@
-package com.dev.ismaelpatrick.meuprimeiroappandroid
+package com.dev.ismaelpatrick.meuprimeiroappandroid.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,12 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.dev.ismaelpatrick.meuprimeiroappandroid.R
 import com.dev.ismaelpatrick.meuprimeiroappandroid.databinding.FragmentBlankBinding
 
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_NAME = "name"
 private const val ARG_AGE = "age"
 private const val ARG_IS_MALE = "isMale"
@@ -49,7 +47,8 @@ class BlankFragment : Fragment() {
             Toast.makeText(
                 it,
                 getString(R.string.hello_blank_fragment),
-                Toast.LENGTH_SHORT)
+                Toast.LENGTH_SHORT
+            )
                 .show()
 
         }
@@ -79,7 +78,7 @@ class BlankFragment : Fragment() {
             R.string.name_age_is_male,
             name,
             age.toString(),
-            if(isMale == true) "Masculino" else "Feminino"
+            if (isMale == true) "Masculino" else "Feminino"
         ).trimIndent()
 
     }

@@ -1,23 +1,24 @@
-package com.dev.ismaelpatrick.meuprimeiroappandroid
+package com.dev.ismaelpatrick.meuprimeiroappandroid.ui
 
-import android.content.Context
+import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.dev.ismaelpatrick.meuprimeiroappandroid.ui.MyClass
+import com.dev.ismaelpatrick.meuprimeiroappandroid.R
 import com.dev.ismaelpatrick.meuprimeiroappandroid.broadcastreceiver.LowBatteryBroadcastReceiver
 import com.dev.ismaelpatrick.meuprimeiroappandroid.databinding.ActivityMainBinding
-
+import com.dev.ismaelpatrick.meuprimeiroappandroid.service.SyncDataService
 
 class MainActivity : AppCompatActivity() {
-   private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
-   private val lowBatteryBroadcastReceiver = LowBatteryBroadcastReceiver()
+    private val lowBatteryBroadcastReceiver = LowBatteryBroadcastReceiver()
     private val lowBatteryintentFilter = IntentFilter("android.intent.action.BATTERY_LOW")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         val myClass = MyClass(context = applicationContext)
 
-        showToast(context = this)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -43,19 +44,20 @@ class MainActivity : AppCompatActivity() {
             this?.textAlignment = TextView.TEXT_ALIGNMENT_CENTER
         }
 
-        supportFragmentManager.beginTransaction().add(R.id.flMainContainer, BlankFragment.newInstance(
-            name = "Ismael Patrick",
-            age = 29,
-            isMale = true
-        )).commit()
+        supportFragmentManager.beginTransaction().add(
+            R.id.flMainContainer, BlankFragment.newInstance(
+                name = "Ismael Patrick",
+                age = 29,
+                isMale = true
+            )
+        ).commit()
 
         registerReceiver(lowBatteryBroadcastReceiver, lowBatteryintentFilter)
+        val intent = Intent(this, SyncDataService::class.java)
+        startService(intent)
 
     }
 
-    fun showToast(context: Context) {
-        Toast.makeText(context, "hello world!", Toast.LENGTH_SHORT).show()
-    }
 
     override fun onDestroy() {
         super.onDestroy()
