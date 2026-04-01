@@ -9,7 +9,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.dev.ismaelpatrick.meuprimeiroappandroid.ui.MyClass
 import com.dev.ismaelpatrick.meuprimeiroappandroid.R
 import com.dev.ismaelpatrick.meuprimeiroappandroid.broadcastreceiver.LowBatteryBroadcastReceiver
 import com.dev.ismaelpatrick.meuprimeiroappandroid.databinding.ActivityMainBinding
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val myClass = MyClass(context = applicationContext)
+
 
 
         binding = ActivityMainBinding.inflate(layoutInflater)
